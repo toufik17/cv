@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toufik HAMINAT — CV</title>
+  <style>
+    :root {
+      --navy: #1e293b;
+      --navy-light: #334155;
+      --blue: #3b82f6;
+      --blue-dark: #1d4ed8;
+      --blue-light: #dbeafe;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --bg-light: #f8fafc;
+      --white: #ffffff;
+      --green: #059669;
+      --sidebar-w: 260px;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      color: var(--text);
+      background: #cbd5e1;
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* ── LANGUAGE TOGGLE ─────────────────────────────── */
+    body[data-lang="en"] .fr { display: none !important; }
+    body[data-lang="fr"] .en { display: none !important; }
+
+    /* ── TOOLBAR ─────────────────────────────────────── */
+    .toolbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--navy);
+      padding: 9px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 200;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    .toolbar-brand {
+      color: #94a3b8;
+      font-size: 11.5px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .toolbar-brand span { color: var(--blue); }
+
+    .toolbar-actions { display: flex; gap: 8px; align-items: center; }
+
+    .btn {
+      padding: 6px 14px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn:active { transform: scale(0.97); }
+
+    .btn-lang { background: var(--blue); color: white; }
+    .btn-lang:hover { background: var(--blue-dark); }
+    .btn-print { background: white; color: var(--navy); }
+    .btn-print:hover { background: #e2e8f0; }
+
+    .lang-indicator {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #94a3b8;
+    }
+
+    /* ── CV WRAPPER ──────────────────────────────────── */
+    .cv {
+      max-width: 960px;
+      margin: 56px auto 40px;
+      background: var(--white);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.18);
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    /* ── HEADER ──────────────────────────────────────── */
+    .cv-header {
+      grid-column: 1 / -1;
+      background: var(--navy);
+      color: white;
+      padding: 30px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-left { flex: 1; }
+
+    .cv-name {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      margin-bottom: 4px;
+      color: white;
+    }
+
+    .cv-title {
+      font-size: 13px;
+      color: var(--blue);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .cv-exp {
+      display: inline-block;
+      background: #1d4ed8;
+      color: #bfdbfe;
+      padding: 2px 12px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 11.5px;
+      color: #94a3b8;
+      line-height: 2;
+    }
+
+    .header-right a { color: #93c5fd; text-decoration: none; }
+    .header-right a:hover { text-decoration: underline; }
+
+    .contact-line { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+
+    /* ── SIDEBAR ─────────────────────────────────────── */
+    .cv-sidebar {
+      background: var(--navy);
+      color: #cbd5e1;
+      padding: 24px 18px;
+      grid-row: 2;
+    }
+
+    .s-section { margin-bottom: 22px; }
+    .s-section:last-child { margin-bottom: 0; }
+
+    .s-title {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #334155;
+    }
+
+    /* Skills list */
+    .s-list { list-style: none; }
+    .s-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 11px;
+      line-height: 1.4;
+      color: #cbd5e1;
+    }
+    .s-list li::before {
+      content: '▸';
+      color: var(--blue);
+      flex-shrink: 0;
+      font-size: 9px;
+      margin-top: 2px;
+    }
+
+    /* Tech tags */
+    .tech-group { margin-bottom: 8px; }
+    .tech-group-name {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #475569;
+      margin-bottom: 5px;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .tag {
+      background: #0f172a;
+      color: #93c5fd;
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-size: 10px;
+      font-weight: 500;
+      border: 1px solid #1e3a5f;
+    }
+    .tag.hot {
+      background: #1d4ed8;
+      color: white;
+      border-color: #3b82f6;
+      font-weight: 700;
+    }
+
+    /* Methods */
+    .method-tag {
+      display: inline-block;
+      background: #0f172a;
+      color: #94a3b8;
+      border: 1px solid #334155;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 10px;
+      margin: 2px 2px 2px 0;
+    }
+
+    /* Languages */
+    .lang-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 7px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #1e293b;
+    }
+    .lang-item:last-child { border-bottom: none; margin-bottom: 0; }
+    .lang-name { font-size: 12px; font-weight: 700; color: #e2e8f0; }
+    .lang-level {
+      font-size: 9.5px;
+      color: #94a3b8;
+      background: #0f172a;
+      padding: 1px 7px;
+      border-radius: 8px;
+    }
+
+    /* Education */
+    .edu-item { margin-bottom: 12px; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-date { font-size: 9.5px; color: var(--blue); font-weight: 700; margin-bottom: 2px; }
+    .edu-degree { font-size: 11px; font-weight: 700; color: #e2e8f0; line-height: 1.4; }
+    .edu-school { font-size: 10px; color: #64748b; }
+
+    /* ── MAIN ────────────────────────────────────────── */
+    .cv-main {
+      padding: 24px 28px;
+      grid-row: 2;
+    }
+
+    /* Profile */
+    .profile-box {
+      background: var(--bg-light);
+      border-left: 3px solid var(--blue);
+      padding: 12px 16px;
+      border-radius: 0 5px 5px 0;
+      margin-bottom: 24px;
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* Section title */
+    .section-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 16px;
+      padding-bottom: 7px;
+      border-bottom: 2px solid var(--blue);
+    }
+
+    /* Experience item */
+    .exp-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .exp-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 3px;
+    }
+
+    .exp-title { font-size: 13.5px; font-weight: 800; color: var(--navy); }
+
+    .exp-period {
+      font-size: 10.5px;
+      color: var(--blue-dark);
+      font-weight: 700;
+      white-space: nowrap;
+      background: var(--blue-light);
+      padding: 2px 9px;
+      border-radius: 9px;
+      flex-shrink: 0;
+    }
+
+    .exp-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .exp-company { font-size: 12px; font-weight: 700; color: var(--blue-dark); }
+    .exp-location { font-size: 11px; color: var(--text-muted); }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 8px;
+      border-radius: 9px;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+    .badge-freelance { background: #fef3c7; color: #92400e; border: 1px solid #fde68a; }
+    .badge-cdi { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .badge-squad { background: #ede9fe; color: #5b21b6; border: 1px solid #c4b5fd; }
+
+    /* Sub-label */
+    .sub-label {
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+      margin-top: 8px;
+    }
+
+    /* Context part labels */
+    .part-label {
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--blue-dark);
+      margin-bottom: 3px;
+      margin-top: 6px;
+    }
+
+    /* Lists */
+    .bl { list-style: none; padding: 0; }
+    .bl li {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin-bottom: 3px;
+      font-size: 11.5px;
+      line-height: 1.5;
+      color: var(--text);
+    }
+    .bl li::before {
+      content: '▸';
+      color: var(--blue);
+      flex-shrink: 0;
+      font-size: 9px;
+      margin-top: 3px;
+    }
+    .bl.check li::before { content: '✓'; color: var(--green); }
+
+    /* Tech stack in exp */
+    .exp-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 10px;
+    }
+    .stag {
+      background: var(--bg-light);
+      color: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 500;
+    }
+    .stag.h { background: var(--blue-light); color: var(--blue-dark); border-color: #bfdbfe; font-weight: 700; }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 768px) {
+      .cv {
+        grid-template-columns: 1fr;
+        margin: 50px 0 0;
+        box-shadow: none;
+      }
+
+      .cv-sidebar {
+        grid-row: auto;
+      }
+
+      .cv-main {
+        grid-row: auto;
+        padding: 18px 16px;
+      }
+
+      .cv-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px 18px;
+        gap: 10px;
+      }
+
+      .header-right {
+        text-align: left;
+        width: 100%;
+      }
+
+      .contact-line {
+        justify-content: flex-start;
+      }
+
+      .exp-header {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .exp-period {
+        align-self: flex-start;
+      }
+
+      .toolbar {
+        padding: 8px 14px;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .toolbar-actions {
+        gap: 6px;
+      }
+
+      .btn {
+        padding: 5px 10px;
+        font-size: 10.5px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .cv-name {
+        font-size: 22px;
+      }
+
+      .cv-title {
+        font-size: 11px;
+      }
+
+      .toolbar-brand {
+        font-size: 10px;
+      }
+
+      .lang-indicator {
+        display: none;
+      }
+
+      .cv-sidebar {
+        padding: 16px 14px;
+      }
+    }
+
+    /* ── PRINT ───────────────────────────────────────── */
+    @media print {
+      body { background: white; font-size: 11px; }
+      .toolbar { display: none !important; }
+      .cv { margin: 0; box-shadow: none; max-width: 100%; width: 100%; }
+      @page { size: A4; margin: 0; }
+      .exp-item { break-inside: avoid; }
+    }
+  </style>
+</head>
+
+<body data-lang="fr">
+
+<!-- ══ TOOLBAR ════════════════════════════════════════════ -->
+<div class="toolbar">
+  <div class="toolbar-brand">TOUFIK HAMINAT — <span>CV</span></div>
+  <div class="toolbar-actions">
+    <span class="lang-indicator fr">FR</span>
+    <span class="lang-indicator en">EN</span>
+    <button class="btn btn-lang" onclick="toggleLang()">
+      <span class="fr">🌐 English version</span>
+      <span class="en">🌐 Version française</span>
+    </button>
+    <button class="btn btn-print" onclick="window.print()">
+      <span class="fr">🖨 Exporter PDF</span>
+      <span class="en">🖨 Export PDF</span>
+    </button>
+  </div>
+</div>
+
+<!-- ══ CV ═════════════════════════════════════════════════ -->
+<div class="cv">
+
+  <!-- ── HEADER ─────────────────────────────────────────── -->
+  <header class="cv-header">
+    <div class="header-left">
+      <div class="cv-name">Toufik HAMINAT</div>
+      <div class="cv-title">Senior Software Engineer</div>
+      <div class="cv-exp fr">14 ans d'expérience</div>
+      <div class="cv-exp en">14 years of experience</div>
+    </div>
+    <div class="header-right">
+      <div class="contact-line">📍 Wattrelos, 59150</div>
+      <div class="contact-line">📱 06 51 49 07 58</div>
+      <div class="contact-line">✉️ <a href="mailto:toufik.haminat@gmail.com">toufik.haminat@gmail.com</a></div>
+    </div>
+  </header>
+
+  <!-- ── SIDEBAR ────────────────────────────────────────── -->
+  <aside class="cv-sidebar">
+
+    <!-- Compétences -->
+    <div class="s-section">
+      <div class="s-title fr">Compétences clés</div>
+      <div class="s-title en">Core Skills</div>
+      <ul class="s-list">
+        <li class="fr">Architecture microservices & DDD</li>
+        <li class="en">Microservices architecture & DDD</li>
+        <li class="fr">Squad Lead & encadrement technique</li>
+        <li class="en">Squad Lead & technical mentoring</li>
+        <li class="fr">API Design & API Management</li>
+        <li class="en">API Design & API Management</li>
+        <li class="fr">Conception & développement Full-Stack</li>
+        <li class="en">Full-Stack design & development</li>
+        <li class="fr">CI/CD & pratiques DevOps</li>
+        <li class="en">CI/CD & DevOps practices</li>
+        <li class="fr">Revue de code & bonnes pratiques</li>
+        <li class="en">Code review & engineering best practices</li>
+        <li class="fr">Cadrage, chiffrage & impact SI</li>
+        <li class="en">Scoping, estimation & IS impact analysis</li>
+        <li class="fr">Suivi de Run & gestion des incidents</li>
+        <li class="en">Run management & incident analysis</li>
+      </ul>
+    </div>
+
+    <!-- Stack technique -->
+    <div class="s-section">
+      <div class="s-title fr">Stack technique</div>
+      <div class="s-title en">Tech Stack</div>
+
+      <div class="tech-group">
+        <div class="tech-group-name fr">Backend</div>
+        <div class="tech-group-name en">Backend</div>
+        <div class="tags">
+          <span class="tag hot">Java 21</span>
+          <span class="tag hot">Spring Boot 3</span>
+          <span class="tag">Spring Security</span>
+          <span class="tag">Spring Data</span>
+          <span class="tag">Spring Web</span>
+          <span class="tag">Hibernate</span>
+          <span class="tag">MapStruct</span>
+          <span class="tag">Java EE</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <div class="tech-group-name fr">Messaging & Cloud</div>
+        <div class="tech-group-name en">Messaging & Cloud</div>
+        <div class="tags">
+          <span class="tag hot">Kafka</span>
+          <span class="tag">RabbitMQ</span>
+          <span class="tag">GCP</span>
+          <span class="tag">PubSub</span>
+          <span class="tag">GCS</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <div class="tech-group-name fr">Frontend</div>
+        <div class="tech-group-name en">Frontend</div>
+        <div class="tags">
+          <span class="tag">VueJS</span>
+          <span class="tag">AngularJS</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">HTML5</span>
+          <span class="tag">CSS3</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <div class="tech-group-name fr">Data</div>
+        <div class="tech-group-name en">Data</div>
+        <div class="tags">
+          <span class="tag">Oracle</span>
+          <span class="tag">MariaDB</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">Redis</span>
+          <span class="tag">MySQL</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <div class="tech-group-name fr">DevOps & CI/CD</div>
+        <div class="tech-group-name en">DevOps & CI/CD</div>
+        <div class="tags">
+          <span class="tag hot">Kubernetes</span>
+          <span class="tag hot">GitHub Actions</span>
+          <span class="tag">Docker</span>
+          <span class="tag">GitLab CI</span>
+          <span class="tag">Jenkins</span>
+          <span class="tag">Ansible</span>
+          <span class="tag">OpenShift</span>
+          <span class="tag">Vault</span>
+        </div>
+      </div>
+
+      <div class="tech-group">
+        <div class="tech-group-name fr">Qualité & API</div>
+        <div class="tech-group-name en">Quality & API</div>
+        <div class="tags">
+          <span class="tag">JUnit</span>
+          <span class="tag">Mockito</span>
+          <span class="tag">TestContainers</span>
+          <span class="tag">Karate</span>
+          <span class="tag">SonarLint</span>
+          <span class="tag">JaCoCo</span>
+          <span class="tag">Swagger</span>
+          <span class="tag">DataDog</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Méthodes -->
+    <div class="s-section">
+      <div class="s-title fr">Méthodes</div>
+      <div class="s-title en">Methods</div>
+      <div>
+        <span class="method-tag">Agile / Scrum</span>
+        <span class="method-tag">Kanban</span>
+        <span class="method-tag">DevOps</span>
+        <span class="method-tag">DDD</span>
+        <span class="method-tag">TDD</span>
+        <span class="method-tag fr">Event Sourcing</span>
+        <span class="method-tag en">Event Sourcing</span>
+        <span class="method-tag">CQRS</span>
+        <span class="method-tag">REST / GraphQL</span>
+        <span class="method-tag">OAuth2</span>
+      </div>
+    </div>
+
+    <!-- Langues -->
+    <div class="s-section">
+      <div class="s-title fr">Langues</div>
+      <div class="s-title en">Languages</div>
+      <div class="lang-item">
+        <span class="lang-name fr">Français</span>
+        <span class="lang-name en">French</span>
+        <span class="lang-level fr">Langue maternelle</span>
+        <span class="lang-level en">Native</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name fr">Anglais</span>
+        <span class="lang-name en">English</span>
+        <span class="lang-level fr">Technique</span>
+        <span class="lang-level en">Technical</span>
+      </div>
+      <div class="lang-item">
+        <span class="lang-name fr">Arabe</span>
+        <span class="lang-name en">Arabic</span>
+        <span class="lang-level fr">Langue maternelle</span>
+        <span class="lang-level en">Native</span>
+      </div>
+    </div>
+
+    <!-- Formation -->
+    <div class="s-section">
+      <div class="s-title fr">Formation</div>
+      <div class="s-title en">Education</div>
+
+      <div class="edu-item">
+        <div class="edu-date">2011 – 2013</div>
+        <div class="edu-degree fr">Master Informatique — Technologies Nouvelles des Systèmes d'Information</div>
+        <div class="edu-degree en">Master's Degree — Information Systems & New Technologies</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-date">2007 – 2009</div>
+        <div class="edu-degree fr">Master Informatique — Ingénierie des Logiciels et Traitement</div>
+        <div class="edu-degree en">Master's Degree — Software Engineering</div>
+      </div>
+
+    </div>
+
+  </aside>
+
+  <!-- ── MAIN ───────────────────────────────────────────── -->
+  <main class="cv-main">
+
+    <!-- Profile -->
+    <div class="profile-box">
+      <span class="fr">
+        Tech Lead Java avec 14 ans d'expérience dans la conception et la livraison d'architectures microservices sur des domaines métier critiques (Finance, Grande Distribution, Banque). Expert en pilotage de squads techniques, migration de systèmes legacy et delivery produit de bout en bout — de la conception à la mise en production.
+      </span>
+      <span class="en">
+        Java Tech Lead with 14 years of experience designing and delivering microservices architectures for business-critical domains (Finance, Retail, Banking). Expert in leading technical squads, migrating legacy systems and owning end-to-end product delivery — from design to production.
+      </span>
+    </div>
+
+    <!-- EXPERIENCES -->
+    <div class="section-title fr">Expérience Professionnelle</div>
+    <div class="section-title en">Professional Experience</div>
+
+    <!-- ── RAKUTEN ─────────────────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title fr">Backend Dev Senior / Squad Lead</div>
+        <div class="exp-title en">Senior Backend Developer / Squad Lead</div>
+        <div class="exp-period fr">Juil. 2022 — Présent</div>
+        <div class="exp-period en">Jul. 2022 — Present</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">Rakuten France</span>
+        <span class="exp-location">— Paris</span>
+        <span class="badge badge-freelance fr">Freelance</span>
+        <span class="badge badge-freelance en">Freelance</span>
+        <span class="badge badge-squad fr">Squad Lead · 5 devs</span>
+        <span class="badge badge-squad en">Squad Lead · 5 devs</span>
+      </div>
+
+      <!-- Context -->
+      <div class="sub-label fr">Contexte — Équipe Sellers · Domaine Finance</div>
+      <div class="sub-label en">Context — Sellers Team · Finance Domain</div>
+
+      <div class="part-label fr">Partie 1 — Extraction Finance du monolithe</div>
+      <div class="part-label en">Phase 1 — Finance domain extraction from monolith</div>
+      <ul class="bl fr">
+        <li>Extraction du domaine Finance vers des microservices autonomes suivant une approche DDD</li>
+        <li>Périmètre : <strong>KYC</strong> (Know Your Customer) · <strong>Transactions</strong> · <strong>Wallet</strong></li>
+      </ul>
+      <ul class="bl en">
+        <li>Extracted the Finance domain from a monolithic application into autonomous microservices (DDD approach)</li>
+        <li>Scope: <strong>KYC</strong> (Know Your Customer) · <strong>Transactions</strong> · <strong>Wallet</strong></li>
+      </ul>
+
+      <div class="part-label fr">Partie 2 — Refonte Finance & Merchant Center</div>
+      <div class="part-label en">Phase 2 — Finance & Merchant Center redesign</div>
+      <ul class="bl fr">
+        <li>Intégration de la banque <strong>REB</strong> (Rakuten European Bank)</li>
+        <li>Intégration de <strong>MangoPay</strong> comme partenaire Wallet et KYC</li>
+        <li>Intégration de <strong>Mirakl Ads</strong> comme partenaire pour la partie Ads</li>
+        <li>Refonte complète du <strong>KYC</strong>, des <strong>Transactions</strong> et du <strong>Wallet</strong></li>
+        <li>Implémentation du <strong>SCA</strong> (Strong Customer Authentication)</li>
+        <li>Refonte du <strong>Merchant Center</strong> : facturation et prélèvement des taxes <strong>AGEC</strong></li>
+      </ul>
+      <ul class="bl en">
+        <li>Integration of <strong>REB</strong> (Rakuten European Bank)</li>
+        <li>Integration of <strong>MangoPay</strong> as Wallet and KYC partner</li>
+        <li>Integration of <strong>Mirakl Ads</strong>
+        <li>Full redesign of <strong>KYC</strong>, <strong>Transactions</strong> and <strong>Wallet</strong> modules</li>
+        <li>Implementation of <strong>SCA</strong> (Strong Customer Authentication)</li>
+        <li>Redesign of <strong>Merchant Center</strong>: invoicing and <strong>AGEC</strong> tax collection</li>
+      </ul>
+
+      <!-- Réalisations -->
+      <div class="sub-label fr">Réalisations clés</div>
+      <div class="sub-label en">Key Achievements</div>
+      <ul class="bl check fr">
+        <li>Modernisation stack : migration Bitbucket → GitHub, Jenkins → GitHub Actions, Docker → Kubernetes</li>
+        <li>POC Kafka pour remplacer RabbitMQ</li>
+        <li>Migration authentification Basic Auth → OAuth2</li>
+        <li>Intégration de <strong>Claude Code</strong> (développement assisté par IA)</li>
+        <li>Pilotage de l'équipe (5 devs) de la conception à la mise en production</li>
+      </ul>
+      <ul class="bl check en">
+        <li>Stack modernization: Bitbucket → GitHub, Jenkins → GitHub Actions, Docker → Kubernetes</li>
+        <li>Kafka POC to replace RabbitMQ</li>
+        <li>Authentication migration from Basic Auth to OAuth2</li>
+        <li>Integration of <strong>Claude Code</strong> (AI-assisted development)</li>
+        <li>Led 5-person squad from design to production deployment</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag h">Java 21</span>
+        <span class="stag h">Spring Boot 3</span>
+        <span class="stag h">OAuth2</span>
+        <span class="stag h">Kubernetes</span>
+        <span class="stag h">GitHub Actions</span>
+        <span class="stag">Spring Security</span>
+        <span class="stag">Spring Data</span>
+        <span class="stag">MapStruct</span>
+        <span class="stag">RabbitMQ</span>
+        <span class="stag">Kafka</span>
+        <span class="stag">REST API</span>
+        <span class="stag">Oracle</span>
+        <span class="stag">MariaDB</span>
+        <span class="stag">DDD</span>
+      </div>
+    </div>
+
+    <!-- ── ADEO BADAS ───────────────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">Tech Lead</div>
+        <div class="exp-period fr">Mars 2021 — Juil. 2022</div>
+        <div class="exp-period en">Mar. 2021 — Jul. 2022</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">ADEO Services</span>
+        <span class="exp-location">— Lille</span>
+        <span class="badge badge-freelance fr">Freelance</span>
+        <span class="badge badge-freelance en">Freelance</span>
+      </div>
+
+      <div class="sub-label fr">Contexte — Équipe BADAS · Balisage en magasin</div>
+      <div class="sub-label en">Context — BADAS Team · In-store labeling</div>
+      <ul class="bl fr">
+        <li><strong>Labelink</strong> : alimentation des étiquettes électroniques (produit, prix, stock) + services d'interaction NFC/flash</li>
+        <li><strong>GeoProduct</strong> : localisation de produits équipés d'une étiquette électronique</li>
+      </ul>
+      <ul class="bl en">
+        <li><strong>Labelink</strong>: feeds electronic shelf labels (product, price, stock) + NFC/flash interaction services</li>
+        <li><strong>GeoProduct</strong>: locates products equipped with electronic shelf labels</li>
+      </ul>
+
+      <div class="sub-label fr">Mission & Actions</div>
+      <div class="sub-label en">Role & Actions</div>
+      <ul class="bl fr">
+        <li>Définir le périmètre produit et mettre en place l'architecture applicative en microservices</li>
+        <li>Audit et benchmark des solutions ESL (Electronic Shelf Label) du marché</li>
+        <li>Garantir l'application des guidelines ADEO au sein des équipes</li>
+        <li>Mise en place des bonnes pratiques de développement et de CI/CD</li>
+        <li>Revue de code, accompagnement et montée en compétence des devs</li>
+      </ul>
+      <ul class="bl en">
+        <li>Define product scope and set up microservices application architecture</li>
+        <li>Audit and benchmark of ESL (Electronic Shelf Label) market solutions</li>
+        <li>Ensure adherence to ADEO engineering guidelines across dev teams</li>
+        <li>Implement development best practices and CI/CD pipelines</li>
+        <li>Code review and developer mentoring</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag h">Java 11</span>
+        <span class="stag h">Spring Boot</span>
+        <span class="stag h">Kafka</span>
+        <span class="stag h">GCP</span>
+        <span class="stag h">Kubernetes</span>
+        <span class="stag">Event Sourcing</span>
+        <span class="stag">CQRS</span>
+        <span class="stag">MongoDB</span>
+        <span class="stag">PubSub</span>
+        <span class="stag">GCS</span>
+        <span class="stag">GitLab CI</span>
+        <span class="stag">GitHub Actions</span>
+        <span class="stag">DataDog</span>
+        <span class="stag">OctoPerf</span>
+      </div>
+    </div>
+
+    <!-- ── ARVATO ISIA ──────────────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title fr">Senior Software Engineer — Team Lead</div>
+        <div class="exp-title en">Senior Software Engineer — Team Lead</div>
+        <div class="exp-period fr">Juil. 2020 — Mars 2021</div>
+        <div class="exp-period en">Jul. 2020 — Mar. 2021</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">Arvato Services France</span>
+        <span class="exp-location">— Vendin-le-Vieil</span>
+        <span class="badge badge-freelance fr">Freelance</span>
+        <span class="badge badge-freelance en">Freelance</span>
+      </div>
+
+      <div class="sub-label fr">Contexte — Équipe ISIA · Intégration IA & Dématérialisation</div>
+      <div class="sub-label en">Context — ISIA Team · AI Integration & Dematerialization</div>
+      <ul class="bl fr">
+        <li>Intégration de solutions IA (RAD/LAD, contrôle de conformité) dans les chaînes de dématérialisation</li>
+        <li>Définir le périmètre, constituer la squad Agile/Scrum, piloter la roadmap produit</li>
+        <li>Étude du marché IA, participation aux appels d'offres et négociations de contrats</li>
+      </ul>
+      <ul class="bl en">
+        <li>Integration of AI solutions (RAD/LAD, compliance checking) into dematerialization pipelines</li>
+        <li>Define scope, build Agile/Scrum squad, manage product roadmap</li>
+        <li>AI market research, RFP responses and contract negotiations</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag h">Java 8</span>
+        <span class="stag h">Spring Boot</span>
+        <span class="stag">PostgreSQL</span>
+        <span class="stag">Ansible</span>
+        <span class="stag">JUnit</span>
+        <span class="stag">Mockito</span>
+        <span class="stag">JaCoCo</span>
+        <span class="stag">Maven</span>
+        <span class="stag">DevOps</span>
+      </div>
+    </div>
+
+    <!-- ── ADEO SPICE ───────────────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">Lead Dev Backend</div>
+        <div class="exp-period fr">Sept. 2019 — Sept. 2020</div>
+        <div class="exp-period en">Sep. 2019 — Sep. 2020</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">ADEO Services</span>
+        <span class="exp-location">— Lille</span>
+        <span class="badge badge-freelance fr">Freelance</span>
+        <span class="badge badge-freelance en">Freelance</span>
+      </div>
+
+      <div class="sub-label fr">Contexte — Projet SPICE (Smart Price for Inter Company Exchange)</div>
+      <div class="sub-label en">Context — SPICE Project (Smart Price for Inter Company Exchange)</div>
+      <ul class="bl fr">
+        <li>Calcul et consolidation des prix inter-compagnies au sein du groupe ADEO</li>
+        <li>Lead dev backend dans une squad Scrum (1 lead back, 2 devs back, 1 dev front, 1 data engineer)</li>
+        <li>Participation à toutes les phases du produit — de la conception au MVP en production</li>
+        <li>Architecture microservices, CI/CD, code review, montée en compétence de l'équipe</li>
+      </ul>
+      <ul class="bl en">
+        <li>Consolidation and calculation of inter-company pricing within the ADEO group</li>
+        <li>Backend Lead Dev in a Scrum squad (1 lead back, 2 back devs, 1 front dev, 1 data engineer)</li>
+        <li>Involved in all product phases from design to MVP in production</li>
+        <li>Microservices architecture, CI/CD, code review, developer coaching</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag h">Java</span>
+        <span class="stag h">Spring Boot</span>
+        <span class="stag h">Kafka</span>
+        <span class="stag h">GCP</span>
+        <span class="stag h">OpenShift</span>
+        <span class="stag">OAuth2</span>
+        <span class="stag">PostgreSQL</span>
+        <span class="stag">Redis</span>
+        <span class="stag">GitLab CI</span>
+        <span class="stag">Docker</span>
+      </div>
+    </div>
+
+    <!-- ── ARVATO 2019 ──────────────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title">Lead Dev / Scrum Master</div>
+        <div class="exp-period fr">Févr. 2019 — Sept. 2019</div>
+        <div class="exp-period en">Feb. 2019 — Sep. 2019</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">Arvato Services France</span>
+        <span class="exp-location">— Vendin-le-Vieil</span>
+        <span class="badge badge-freelance fr">Freelance</span>
+        <span class="badge badge-freelance en">Freelance</span>
+      </div>
+
+      <div class="part-label fr">Mission 1 — Portail fournisseur Alphabet (filiale BMW)</div>
+      <div class="part-label en">Mission 1 — Alphabet Supplier Portal (BMW subsidiary)</div>
+      <ul class="bl fr">
+        <li>Portail web pour la gestion des coordonnées des concessions et automatisation de l'envoi des documents clients</li>
+        <li>Architecture microservices — Python/Flask + VueJS + GraphQL</li>
+      </ul>
+      <ul class="bl en">
+        <li>Web portal for managing dealership data and automated document dispatch to customers</li>
+        <li>Microservices architecture — Python/Flask + VueJS + GraphQL</li>
+      </ul>
+
+      <div class="part-label fr">Mission 2 — Application MyDemat (refonte SI innovation)</div>
+      <div class="part-label en">Mission 2 — MyDemat Application (SI innovation rewrite)</div>
+      <ul class="bl fr">
+        <li>Visualisation et extraction de données sur des documents numérisés</li>
+        <li>Lead dev full-stack — Java 8 + Spring Boot + AngularJS</li>
+      </ul>
+      <ul class="bl en">
+        <li>Visualization and data extraction from scanned documents</li>
+        <li>Full-stack lead — Java 8 + Spring Boot + AngularJS</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag">Python</span>
+        <span class="stag">Flask</span>
+        <span class="stag">GraphQL</span>
+        <span class="stag">VueJS</span>
+        <span class="stag">Java 8</span>
+        <span class="stag">Spring Boot</span>
+        <span class="stag">AngularJS</span>
+        <span class="stag">PostgreSQL</span>
+        <span class="stag">Ansible</span>
+      </div>
+    </div>
+
+    <!-- ── SOCIÉTÉ GÉNÉRALE GDPR ────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title fr">Lead Dev & Développeur Full-Stack</div>
+        <div class="exp-title en">Lead Dev & Full-Stack Developer</div>
+        <div class="exp-period fr">Nov. 2017 — Juin 2018</div>
+        <div class="exp-period en">Nov. 2017 — Jun. 2018</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">Société Générale — Crédit du Nord</span>
+        <span class="exp-location">— Lille</span>
+        <span class="badge badge-cdi fr">CDI</span>
+        <span class="badge badge-cdi en">Full-time</span>
+      </div>
+
+      <div class="sub-label fr">Contexte — Application GCD · GDPR</div>
+      <div class="sub-label en">Context — GCD Application · GDPR Compliance</div>
+      <ul class="bl fr">
+        <li>Conception et développement de l'application de <strong>Gestion des Consentements et des Droits</strong> (GDPR)</li>
+        <li>Mise en place de la chaîne de tests (unitaires, intégration, acceptance) et du pipeline de déploiement</li>
+        <li>Suivi du déploiement en production et traitement des incidents</li>
+      </ul>
+      <ul class="bl en">
+        <li>Design and development of the <strong>Consent and Rights Management</strong> application (GDPR compliance)</li>
+        <li>Full test suite setup (unit, integration, acceptance) and deployment pipeline</li>
+        <li>Production deployment monitoring and incident management</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag h">Java 8</span>
+        <span class="stag h">Spring Boot</span>
+        <span class="stag">AngularJS</span>
+        <span class="stag">Jenkins</span>
+        <span class="stag">Maven</span>
+        <span class="stag">HTML5</span>
+        <span class="stag">REST</span>
+        <span class="stag">DevOps</span>
+      </div>
+    </div>
+
+    <!-- ── SOCIÉTÉ GÉNÉRALE API ─────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title fr">Concepteur Développeur — Services Métier</div>
+        <div class="exp-title en">Software Engineer — Business API Services</div>
+        <div class="exp-period fr">Sept. 2015 — Nov. 2017</div>
+        <div class="exp-period en">Sep. 2015 — Nov. 2017</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">Société Générale — Crédit du Nord</span>
+        <span class="exp-location">— Lille</span>
+        <span class="badge badge-cdi fr">CDI</span>
+        <span class="badge badge-cdi en">Full-time</span>
+      </div>
+
+      <div class="sub-label fr">Contexte — APIs métier en architecture microservices</div>
+      <div class="sub-label en">Context — Business APIs in microservices architecture</div>
+      <ul class="bl fr">
+        <li>Conception et développement d'APIs métier pour les projets <strong>Mobilité Bancaire</strong>, <strong>VESPA</strong> (refonte virements) et <strong>MIF II</strong></li>
+        <li>Gestion des APIs via <strong>IBM API Connect</strong>, rédaction de la documentation</li>
+        <li>Participation aux ateliers de design API, tests et homologations</li>
+      </ul>
+      <ul class="bl en">
+        <li>Design and development of business APIs for <strong>Banking Mobility</strong>, <strong>VESPA</strong> (wire transfer redesign) and <strong>MIF II</strong></li>
+        <li>API management via <strong>IBM API Connect</strong>, documentation authoring</li>
+        <li>API design workshops, testing and technical certification</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag h">Java EE</span>
+        <span class="stag h">IBM API Connect</span>
+        <span class="stag">REST</span>
+        <span class="stag">SOAP</span>
+        <span class="stag">Jenkins</span>
+        <span class="stag">Maven</span>
+        <span class="stag">Scrum</span>
+        <span class="stag">DevOps</span>
+      </div>
+    </div>
+
+    <!-- ── SOCIÉTÉ GÉNÉRALE BACK ────────────── -->
+    <div class="exp-item">
+      <div class="exp-header">
+        <div class="exp-title fr">Développeur Back-End</div>
+        <div class="exp-title en">Backend Developer</div>
+        <div class="exp-period fr">Sept. 2012 — Sept. 2015</div>
+        <div class="exp-period en">Sep. 2012 — Sep. 2015</div>
+      </div>
+      <div class="exp-meta">
+        <span class="exp-company">Société Générale — Crédit du Nord</span>
+        <span class="exp-location">— Lille</span>
+        <span class="badge badge-cdi fr">CDI</span>
+        <span class="badge badge-cdi en">Full-time</span>
+      </div>
+
+      <div class="sub-label fr">Contexte — Site internet & application mobile Crédit du Nord</div>
+      <div class="sub-label en">Context — Crédit du Nord website & mobile application</div>
+      <ul class="bl fr">
+        <li>Développement de services back-end (EJB) pour les projets réglementaires (virements, prélèvements)</li>
+        <li>Tests unitaires et d'intégration, maintenances évolutives, suivi de RUN</li>
+        <li>Livraison et intégration dans les différents environnements</li>
+      </ul>
+      <ul class="bl en">
+        <li>Backend service development (EJB) for regulatory projects (wire transfers, direct debits)</li>
+        <li>Unit and integration testing, maintenance, run monitoring</li>
+        <li>Release management and environment integration</li>
+      </ul>
+
+      <div class="exp-stack">
+        <span class="stag">Java EE</span>
+        <span class="stag">EJB</span>
+        <span class="stag">JPA</span>
+        <span class="stag">Spring</span>
+        <span class="stag">Hibernate</span>
+        <span class="stag">Oracle</span>
+        <span class="stag">SOAP</span>
+        <span class="stag">Scrum</span>
+      </div>
+    </div>
+
+  </main>
+</div><!-- /cv -->
+
+<script>
+  function toggleLang() {
+    const body = document.body;
+    const current = body.getAttribute('data-lang');
+    const next = current === 'fr' ? 'en' : 'fr';
+    body.setAttribute('data-lang', next);
+    document.documentElement.lang = next;
+    document.title = next === 'fr'
+      ? 'Toufik HAMINAT — CV'
+      : 'Toufik HAMINAT — Resume';
+  }
+</script>
+
+</body>
+</html>
